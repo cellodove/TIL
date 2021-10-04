@@ -56,7 +56,7 @@ Runnable객체를 받아와 다른곳으로 전달해주는 Handler 클래스다
 
 Handler와 Looper는 왜 필요할까?
 
-![handler1.png](./../../img/android/handler/handler1.png)
+![handler1.png](./../img/android/handler/handler1.png)
 
 병렬 처리로 돌아가고 있는 Main과 Sub Thread에서 같은 textview를 set할 때 어떤 Thread의 것을
 
@@ -66,11 +66,11 @@ Handler와 Looper는 왜 필요할까?
 
 전달하던지, MainThread 내에서 자체적으로 처리하던지 해야하는것이다.
 
-![handler2.png](./../../img/android/handler/handler2.png)
+![handler2.png](./../img/android/handler/handler2.png)
 
 ### Handler와 Looper의 동작과정
 
-![handler3.png](./../../img/android/handler/handler3.png)
+![handler3.png](./../img/android/handler/handler3.png)
 
 Handler는 단어 의미 그대로 무언가를 처리하는 것이다. 이 친구는 Message와 Runnable객체를
 
