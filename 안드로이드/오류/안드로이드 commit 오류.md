@@ -101,8 +101,8 @@ manager.eventOutput.observe(this@Activity){ output ->
                             msg = getString(R.string.fail_upload_data),
                             rightBtnText = getString(R.string.confirm)
                         ){
-													finish()
-												}.show(supportFragmentManager, "dialog_common_dialog")
+							finish()
+						}.show(supportFragmentManager, "dialog_common_dialog")
                     }
                 }
             }
