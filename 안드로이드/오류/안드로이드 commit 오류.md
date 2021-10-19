@@ -34,9 +34,7 @@ viewModel.liveFragmentStep.observe(this@Activity) { step ->
 
 ### Activity의 onSaveInstanceState()가 호출된 후에 FragmentTransaction의 commit()이 동작하여 생긴다.
 
-안
-
-드로이드 시스템은 메모리를 비우기 위해 어느 시점에서든 프로세스(액티비티, 서비스 등)를 종료할 권한을 가지고 있다. 이때 onSaveInstanceState() 콜백 메소드는 Activity에게 Activity의 상태를 저장할 수 있도록 해준다.
+안드로이드 시스템은 메모리를 비우기 위해 어느 시점에서든 프로세스(액티비티, 서비스 등)를 종료할 권한을 가지고 있다. 이때 onSaveInstanceState() 콜백 메소드는 Activity에게 Activity의 상태를 저장할 수 있도록 해준다.
 
 ![activity_lifecycle.png](./../../img/android/오류/activity_lifecycle.png?raw=true)
 
