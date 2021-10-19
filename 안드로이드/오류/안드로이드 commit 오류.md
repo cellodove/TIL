@@ -13,17 +13,17 @@ E/UncaughtException: java.lang.IllegalStateException:
 
 ```kotlin
 viewModel.liveFragmentStep.observe(this@Activity) { step ->
-            supportFragmentManager.beginTransaction().run {
-                when (step) {
-                    ViewModel.FragmentStep.INFO -> replace(R.id.fragment_container_view, GuideFragment(), "info_fragment")
-                    ViewModel.FragmentStep.PROGRESS -> replace(R.id.fragment_container_view, ProgressFragment(), "progress_fragment")
-                    ViewModel.FragmentStep.DONE -> replace(R.id.fragment_container_view, DoneFragment(), "done_fragment")
-                    ViewModel.FragmentStep.GUIDE -> replace(R.id.fragment_container_view, GuideSelfFragment(), "guide_fragment")
-                    else -> Unit
-                }
-                commit()
+    supportFragmentManager.beginTransaction().run {
+        when (step) {
+            ViewModel.FragmentStep.INFO -> replace(R.id.fragment_container_view, GuideFragment(), "info_fragment")
+            ViewModel.FragmentStep.PROGRESS -> replace(R.id.fragment_container_view, ProgressFragment(), "progress_fragment")
+            ViewModel.FragmentStep.DONE -> replace(R.id.fragment_container_view, DoneFragment(), "done_fragment")
+            ViewModel.FragmentStep.GUIDE -> replace(R.id.fragment_container_view, GuideSelfFragment(), "guide_fragment")
+                else -> Unit
             }
-        }
+            commit()
+         }
+    }
 ```
 
 위 코드에는 크게 문제가 없어 보인다. 그러나 오류를 보면 fragmentTransaction.commit에서 문제가 발생한다.
@@ -63,24 +63,24 @@ IllegalStateException을 예방하기 위한 방법은 두가지가 있다.
 
 ```kotlin
 manager.eventOutput.observe(this@Activity){ output ->
-            if (output != null) {
-                viewModel.requestResult(output) { result ->
-                    if (result != null) {
-                        viewModel.liveResult.value = result
-                        viewModel.liveFragmentStep.value = ViewModel.FragmentStep.DONE
-                    } else {
-                        CommonDialog.getInstance(
-                            isImgVisible = true,
-                            title = getString(R.string.failed_send_data),
-                            msg = getString(R.string.fail_upload_data),
-                            rightBtnText = getString(R.string.confirm)
-                        ).show(supportFragmentManager, "dialog_common_dialog")
-                        viewModel.liveFragmentStep.value = ViewModel.FragmentStep.INFO
-                    }
-                }
+    if (output != null) {
+        viewModel.requestResult(output) { result ->
+             if (result != null) {
+                 viewModel.liveResult.value = result
+                viewModel.liveFragmentStep.value = ViewModel.FragmentStep.DONE
+            } else {
+                 CommonDialog.getInstance(
+                    isImgVisible = true,
+                    title = getString(R.string.failed_send_data),
+                    msg = getString(R.string.fail_upload_data),
+                    rightBtnText = getString(R.string.confirm)
+                ).show(supportFragmentManager, "dialog_common_dialog")
+                viewModel.liveFragmentStep.value = ViewModel.FragmentStep.INFO
             }
+         }
+    }
 
-        }
+ }
 ```
 
 onSaveInstanceState() 이후에 Transaction이 일어났기에 IllegalStateException이 생긴것이였다.
@@ -89,38 +89,38 @@ onSaveInstanceState() 이후에 Transaction이 일어났기에 IllegalStateExcep
 
 ```kotlin
 manager.eventOutput.observe(this@Activity){ output ->
-            if (output != null) {
-                viewModel.requestResult(output) { result ->
-                    if (result != null) {
-                        viewModel.liveResult.value = result
-                        viewModel.liveFragmentStep.value = ViewModel.FragmentStep.DONE
-                    } else {
-                        CommonDialog.getInstance(
-                            isImgVisible = true,
-                            title = getString(R.string.failed_send_data),
-                            msg = getString(R.string.fail_upload_data),
-                            rightBtnText = getString(R.string.confirm)
-                        ){
-							finish()
-						}.show(supportFragmentManager, "dialog_common_dialog")
-                    }
-                }
+    if (output != null) {
+        viewModel.requestResult(output) { result ->
+            if (result != null) {
+                viewModel.liveResult.value = result
+                viewModel.liveFragmentStep.value = ViewModel.FragmentStep.DONE
+            } else {
+                CommonDialog.getInstance(
+                    isImgVisible = true,
+                    title = getString(R.string.failed_send_data),
+                    msg = getString(R.string.fail_upload_data),
+                    rightBtnText = getString(R.string.confirm)
+                ){
+					finish()
+				}.show(supportFragmentManager, "dialog_common_dialog")
             }
-
         }
+    }
+
+}
 
 viewModel.liveFragmentStep.observe(this@Activity) { step ->
-            supportFragmentManager.beginTransaction().run {
-                when (step) {
-                    ViewModel.FragmentStep.INFO -> replace(R.id.fragment_container_view, GuideFragment(), "info_fragment")
-                    ViewModel.FragmentStep.PROGRESS -> replace(R.id.fragment_container_view, ProgressFragment(), "progress_fragment")
-                    ViewModel.FragmentStep.DONE -> replace(R.id.fragment_container_view, DoneFragment(), "done_fragment")
-                    ViewModel.FragmentStep.GUIDE -> replace(R.id.fragment_container_view, GuideSelfFragment(), "guide_fragment")
-                    else -> Unit
-                }
-                commitAllowingStateLoss()
-            }
+    supportFragmentManager.beginTransaction().run {
+        when (step) {
+            ViewModel.FragmentStep.INFO -> replace(R.id.fragment_container_view, GuideFragment(), "info_fragment")
+            ViewModel.FragmentStep.PROGRESS -> replace(R.id.fragment_container_view, ProgressFragment(), "progress_fragment")
+            ViewModel.FragmentStep.DONE -> replace(R.id.fragment_container_view, DoneFragment(), "done_fragment")
+            ViewModel.FragmentStep.GUIDE -> replace(R.id.fragment_container_view, GuideSelfFragment(), "guide_fragment")
+            else -> Unit
         }
+        commitAllowingStateLoss()
+    }
+}
 ```
 
 나는 간단하게 수정할 수 있고 어차피 처음 상태로 돌아가야 했기 때문에 commitAllowingStateLoss() 메소드를 사용해 문제를 해결했다.
