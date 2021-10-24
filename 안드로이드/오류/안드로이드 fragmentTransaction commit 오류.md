@@ -1,4 +1,4 @@
-# 안드로이드 commit 오류
+# 안드로이드 fragmentTransaction commit 오류
 
 얼마전 이런 오류가 나왔다.
 
