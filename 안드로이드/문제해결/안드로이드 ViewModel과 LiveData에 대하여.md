@@ -6,7 +6,7 @@
 class MyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val viewModel: ViewModel by viewModels()
-			viewModel.liveFragmentStep.observe(this@Activity) { step ->
+        viewModel.liveFragmentStep.observe(this@Activity) { step ->
             supportFragmentManager.beginTransaction().run {
                 when (step) {
                     ViewModel.FragmentStep.INFO -> replace(R.id.fragment_container_view, GuideFragment(), "info_fragment")
@@ -15,22 +15,21 @@ class MyActivity : AppCompatActivity() {
                     ViewModel.FragmentStep.GUIDE -> replace(R.id.fragment_container_view, GuideSelfFragment(), "guide_fragment")
                     else -> Unit
                 }
-                commit()
+            commit()
             }
         }
-
     }
 }
 ```
 
 ```kotlin
 class ViewModel : ViewModel() {
-	enum class FragmentStep{
+    enum class FragmentStep{
      INFO, PROGRESS, DONE, GUIDE
     }
     val liveFragmentStep = MutableLiveData(FragmentStep.INFO)
-			
-	fun goProgressFragment(){
+
+    fun goProgressFragment(){
      liveFragmentStep.value = FragmentStep.PROGRESS
     }
 }
@@ -40,9 +39,9 @@ class ViewModel : ViewModel() {
 class GuideFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val viewModel: ViewModel by viewModels()
-		binding.okButton.setOnClickListener{
-			viewModel.goProgressFragment()
-		}
+        binding.okButton.setOnClickListener{
+            viewModel.goProgressFragment()
+        }
     }
 }
 ```
