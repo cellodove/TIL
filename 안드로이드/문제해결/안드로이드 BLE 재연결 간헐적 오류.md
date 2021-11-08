@@ -83,7 +83,7 @@ fun disconnected(){
 
 위의 코드를보면 알겠지만 close()와 disconnected()둘다 연결을 끊을때 bluetoothGatt.close()만 호출하는것을 알수있다. 이 하나만 호출하여 문제가 생겼다.
 
-`BluetoothGatt`의 `close()` 메소드 문서를 보면 ***"Bluetooth GATT Client를 닫습니다. 응용 프로그램은 이 GATT Client를 사용한 후 가능한 빨리 이 방법을 호출해야 합니다."***라고 써져있다.
+`BluetoothGatt`의 `close()` 메소드 문서를 보면 ***"Bluetooth GATT Client를 닫습니다. 응용 프로그램은 이 GATT Client를 사용한 후 가능한 빨리 이 방법을 호출해야 합니다."*** 라고 써져있다.
 
 **close()메소드는 Bluetooth GATT Client를 닫을뿐 연결을 해제하지는 않았던 것이다..!**
 
