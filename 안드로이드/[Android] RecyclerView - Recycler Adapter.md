@@ -497,7 +497,7 @@ override fun getItemCount(): Int {
     }
 ```
 
-리사이클러뷰 포지션의 1번째는 헤더로 이미 사용을했다. 즉 전체아이템의 갯수는 헤더 + Lisy.size이다. 그래서 카운팅을 할때 +1을 해주어야한다.
+리사이클러뷰 포지션의 1번째는 헤더로 이미 사용을했다. 즉 전체아이템의 갯수는 헤더 + List.size이다. 그래서 카운팅을 할때 +1을 해주어야한다.
 
 ```kotlin
 override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
