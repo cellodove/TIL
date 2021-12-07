@@ -535,6 +535,6 @@ override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
 ![result.png](/img/android/recyclerview/result.png?raw=true)
 
-전체코드는 아래 링크에서 볼수있습니다.
+전체코드는 아래 링크에서 볼수있다.
 
 [https://github.com/cellodove/RecyclerView](https://github.com/cellodove/RecyclerView)
