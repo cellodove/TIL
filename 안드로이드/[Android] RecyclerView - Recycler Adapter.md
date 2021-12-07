@@ -527,7 +527,7 @@ override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
 아래에서 새롭게 올라오는 데이터가 리스트의 20번째 데이터라면 position으로 20이 들어오는 것이다.
 
-`onCreateViewHolder`는 `ViewHolder`를 만들기 위해 13~15번 정도밖에 호출되지 않지만, `onBindViewHolder`는 스크롤을 해서 데이터 바인딩이 새롭게 필요할 때 마다 호출된다. 스크롤을 무한정 돌린다면, `onBindViewHolder`도 무한정 호출된다. 무한정 호출된다 하더라도 우리는 딱 13~15개의 뷰 객체만 사용하는 꼴이다.
+`onCreateViewHolder`는 `ViewHolder`를 만들기 위해 13 ~ 15번 정도밖에 호출되지 않지만, `onBindViewHolder`는 스크롤을 해서 데이터 바인딩이 새롭게 필요할 때 마다 호출된다. 스크롤을 무한정 돌린다면, `onBindViewHolder`도 무한정 호출된다. 무한정 호출된다 하더라도 우리는 딱 13 ~ 15개의 뷰 객체만 사용하는 꼴이다.
 
 여기서는 헤더를 사용하여 포지션이 +1 된 상태이기때문에 정상적인 데이터의 포지션을 가져올려면 -1를 해주어야한다.
 
