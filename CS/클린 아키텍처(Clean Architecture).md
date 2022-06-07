@@ -1149,7 +1149,7 @@ object UseCaseModule {
 
 앱은 다음과 같이 동작한다.
 
-![cs_architecture_gif1.gif](/img/cs_architecture_gif1.gif)
+![cs_architecture_gif1.gif](/img/cs_architecture_gif1.gif?raw=true)
 
 전체 코드는 아래 링크에서 볼 수 있다.
 finish1 브런치를 보면된다.
